@@ -3,6 +3,7 @@ package ir.barsavanet.shortenurlbackend.web.services;
 import ir.barsavanet.shortenurlbackend.config.AppConfig;
 import ir.barsavanet.shortenurlbackend.services.ShortenUrlService;
 import ir.barsavanet.shortenurlbackend.services.models.UrlModel;
+import java.net.URISyntaxException;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class UrlRedirectorController {
     ShortenUrlService service;
 
     @RequestMapping(value = "{id}")
-    public void redirect(@PathVariable Long id, HttpServletResponse response) {
+    public void redirect(@PathVariable Long id, HttpServletResponse response) throws URISyntaxException {
         UrlModel url = service.findUrlById(id);
         if (null != url) {
             response.setHeader("Location", url.getOrgUrl());

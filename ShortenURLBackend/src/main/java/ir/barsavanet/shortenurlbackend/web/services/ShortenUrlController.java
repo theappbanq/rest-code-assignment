@@ -48,7 +48,7 @@ public class ShortenUrlController {
     }
     
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) throws URISyntaxException {
         UrlModel entity = services.deleteUrl(id);
         if(null != entity) {
             return ResponseEntity.accepted().build();
